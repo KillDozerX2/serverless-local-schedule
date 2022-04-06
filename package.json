@@ -1,6 +1,6 @@
 {
-  "name": "serverless-local-schedule",
-  "version": "0.1.6",
+  "name": "@distinction-dev/serverless-local-schedule",
+  "version": "1.0.0",
   "description": "Allows defining CloudWatch schedules in local timezones(with DST!) in serverless events",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/unitedincome/serverless-local-schedule.git"
+    "url": "git+https://github.com/distinction-dev/serverless-local-schedule.git"
   },
   "keywords": [
     "serverless",
@@ -23,9 +23,9 @@
   "author": "UnitedIncome <engineering@unitedincome.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/unitedincome/serverless-local-schedule/issues"
+    "url": "https://github.com/distinction-dev/serverless-local-schedule/issues"
   },
-  "homepage": "https://github.com/unitedincome/serverless-local-schedule#readme",
+  "homepage": "https://github.com/distinction-dev/serverless-local-schedule#readme",
   "dependencies": {
     "local-crontab": "^0.1.7",
     "timezone-enum": "^1.0.1"
