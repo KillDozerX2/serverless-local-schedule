@@ -1,13 +1,15 @@
 # Serverless Local Schedule
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
-[![npm](https://img.shields.io/npm/v/serverless-local-schedule.svg)](https://www.npmjs.com/package/serverless-local-schedule)
+[![npm](https://img.shields.io/npm/v/@distinction-dev/serverless-local-schedule.svg)](https://www.npmjs.com/package/serverless-local-schedule)
 
 This plugin allows you to specify a timezone on your lambdas triggered by AWS CloudWatch Events.
 
 ---
 
-_Originally developed by [**Capital One**](https://www.capitalone.com/tech/open-source/), now maintained in scope of Serverless, Inc_
+_Originally developed by [**Capital One**](https://www.capitalone.com/tech/open-source/), now maintained by Distinction Dev_
+
+_This was maintained by Serverless Inc for some time and then forked over by Distinction Dev_
 
 _Capital One considers itself the bank a technology company would build. It's delivering best-in-class innovation so that its millions of customers can manage their finances with ease. Capital One is all-in on the cloud and is a leader in the adoption of open source, RESTful APIs, microservices and containers. We build our own products and release them with a speed and agility that allows us to get new customer experiences to market quickly. Our engineers use artificial intelligence and machine learning to transform real-time data, software and algorithms into the future of finance, reimagined._
 
@@ -16,8 +18,16 @@ _Capital One considers itself the bank a technology company would build. It's de
 ## Install
 
 ```bash
-sls plugin install -n serverless-local-schedule
+npm i -D @distinction-dev/serverless-local-schedule
 ```
+
+or
+
+```bash
+yarn add -D @distinction-dev/serverless-local-schedule
+```
+
+_Note: Don't forget to add in the plugins section_
 
 ## Usage
 
@@ -54,6 +64,8 @@ functions:
       - schedule:
           rate: cron(0 15 4-31 11 ? *) # non-DST portion of November
 ```
+
+**Note: To see what crontabs you'll get for your timezone, try <https://distinction-dev.github.io/local-crontab/>**
 
 **NOTE:** The `- schedule: cron(* * * * ? *)` short syntax isn't supported.
 
