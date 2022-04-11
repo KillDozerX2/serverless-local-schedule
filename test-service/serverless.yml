@@ -7,8 +7,8 @@ provider:
 plugins:
   localPath: '../../'
   modules:
+    - serverless-step-functions
     - serverless-local-schedule
-
 functions:
   hello:
     handler: handler.hello
@@ -25,3 +25,22 @@ functions:
             - cron(0 5 * * ? *)
             - cron(0 6 * * ? *)
           timezone: America/New_York
+
+stepFunctions:
+  stateMachines:
+    hellostepfunc1:
+      events:
+        - schedule:
+            rate: cron(0 5 * * ? *)
+            enabled: true
+            timezone: America/New_York
+      name: myStateMachine
+      definition:
+        StartAt: HelloWorld1
+        States:
+          HelloWorld1:
+            Type: Task
+            Resource:
+              Fn::GetAtt: [hello, Arn]
+            End: true
+  validate: true
