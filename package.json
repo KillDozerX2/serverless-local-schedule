@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "prettier -l index.js || (echo need formatting ; exit 1)",
-    "format": "prettier --write index.js"
+    "format": "prettier --write index.js",
+    "postinstall": "npx patch-package"
   },
   "repository": {
     "type": "git",
