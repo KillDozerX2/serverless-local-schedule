@@ -11,5 +11,7 @@
   "dependencies": {
     "serverless-local-schedule": "*"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "serverless": "^3.23.0"
+  }
 }
