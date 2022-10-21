@@ -256,16 +256,18 @@ function convertStepFunctionCrontabs(plugin = this) {
    */
   let newCrontabsMap = {};
   for (const stateMachineName in plugin.serverless.service.stepFunctions.stateMachines) {
-    const eventsMap = getNewEventsMap(
-      plugin.serverless.service.stepFunctions.stateMachines[stateMachineName].events,
-      stateMachineName,
-      plugin,
-      doVerboseLogging
-    );
-    if (eventsMap !== null) {
-      newCrontabsMap = {
-        ...eventsMap
-      };
+    if (plugin.serverless.service.stepFunctions.stateMachines[stateMachineName].events) {
+      const eventsMap = getNewEventsMap(
+        plugin.serverless.service.stepFunctions.stateMachines[stateMachineName].events,
+        stateMachineName,
+        plugin,
+        doVerboseLogging
+      );
+      if (eventsMap !== null) {
+        newCrontabsMap = {
+          ...eventsMap
+        };
+      }
     }
   }
 
