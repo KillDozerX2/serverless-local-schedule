@@ -238,6 +238,13 @@ function convertFunctionCrontabs(plugin = this) {
  * @param {ServerlessLocalCrontabs} plugin
  */
 function convertStepFunctionCrontabs(plugin = this) {
+  if (!plugin.serverless.service.stepFunctions) {
+    return;
+  }
+  else if (Object.keys(plugin.serverless.service.stepFunctions.stateMachines).length === 0) {
+    plugin.log.info("No state machines present but plugin configured")
+    return;
+  }
   /**
    * @type {Boolean}
    */
