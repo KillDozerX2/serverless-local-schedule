@@ -5,7 +5,7 @@ provider:
   runtime: nodejs12.x
 
 plugins:
-  localPath: '../../'
+  localPath: "../../"
   modules:
     - serverless-step-functions
     - serverless-local-schedule
@@ -25,7 +25,6 @@ functions:
             - cron(0 5 * * ? *)
             - cron(0 6 * * ? *)
           timezone: America/New_York
-
 stepFunctions:
   stateMachines:
     hellostepfunc1:
@@ -43,4 +42,14 @@ stepFunctions:
             Resource:
               Fn::GetAtt: [hello, Arn]
             End: true
-  validate: true
+    hellostepfunc2:
+      name: myStateMachine
+      definition:
+        StartAt: HelloWorld1
+        States:
+          HelloWorld1:
+            Type: Task
+            Resource:
+              Fn::GetAtt: [hello, Arn]
+            End: true
+validate: true
