@@ -156,12 +156,13 @@ const getNewEventsMap = (events, identifier, plugin, doVerboseLogging) => {
       if (newCrontabs.length !== 0) {
         // remove timezone from original schedule event
         delete schedule.timezone;
-        // append new utc crontab schedule events
-        result[identifier] = {
-          newCrontabs: [],
-          removeIndexes: []
-        };
-        result[identifier].removeIndexes.splice(0, 0, eventIndex);
+        if (result[identifier] === undefined) {
+          // append new utc crontab schedule events
+          result[identifier] = {
+            newCrontabs: [],
+            removeIndexes: []
+          };
+        }
         result[identifier].newCrontabs.push(
           ...newCrontabs.map(
             /**
