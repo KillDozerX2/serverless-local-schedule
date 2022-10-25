@@ -163,6 +163,7 @@ const getNewEventsMap = (events, identifier, plugin, doVerboseLogging) => {
             removeIndexes: []
           };
         }
+        result[identifier].removeIndexes.push(eventIndex)
         result[identifier].newCrontabs.push(
           ...newCrontabs.map(
             /**
@@ -221,12 +222,9 @@ function convertFunctionCrontabs(plugin = this) {
 
   // remove the original schedule events
   for (const funcName in newCrontabsMap) {
-    newCrontabsMap[funcName].removeIndexes.forEach((eventIndex) => {
-      plugin.serverless.service.functions[funcName].events.splice(
-        eventIndex,
-        1
-      );
-    });
+    plugin.serverless.service.functions[funcName].events = plugin.serverless.service.functions[funcName].events.filter((event, index) => {
+      !newCrontabsMap[funcName].removeIndexes.includes(index)
+    })
   }
 
   for (const funcName in newCrontabsMap) {
