@@ -139,7 +139,8 @@ const getNewEventsMap = (events, identifier, plugin, doVerboseLogging) => {
             }
             return newVal;
           })
-          .filter((r) => r !== undefined);
+          .filter((r) => r !== undefined)
+          .flat()
       } else {
         newCrontabs = matchAndGenerateCronTabs(
           schedule.rate,
@@ -176,7 +177,7 @@ const getNewEventsMap = (events, identifier, plugin, doVerboseLogging) => {
               schedule: Object.assign({}, schedule, {
                 rate:
                   typeof crontab === "string"
-                    ? `cron(${crontab})`
+                    ? [`cron(${crontab})`]
                     : crontab.map((c) => `cron(${c})`),
                 name: schedule.name && `${schedule.name}-${i}`
               })
