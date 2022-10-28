@@ -216,7 +216,8 @@ function convertFunctionCrontabs(plugin = this) {
     );
     if (eventsMap !== null) {
       newCrontabsMap = {
-        ...eventsMap
+        ...eventsMap,
+        ...newCrontabsMap
       };
     }
   }
@@ -265,7 +266,8 @@ function convertStepFunctionCrontabs(plugin = this) {
       );
       if (eventsMap !== null) {
         newCrontabsMap = {
-          ...eventsMap
+          ...eventsMap,
+          ...newCrontabsMap
         };
       }
     }
