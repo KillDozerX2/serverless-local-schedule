@@ -224,9 +224,9 @@ function convertFunctionCrontabs(plugin = this) {
 
   // remove the original schedule events
   for (const funcName in newCrontabsMap) {
-    plugin.serverless.service.functions[funcName].events = plugin.serverless.service.functions[funcName].events.filter((event, index) => {
-      !newCrontabsMap[funcName].removeIndexes.includes(index)
-    })
+    plugin.serverless.service.functions[funcName].events = 
+      plugin.serverless.service.functions[funcName].events
+        .filter((event, index) => !newCrontabsMap[funcName].removeIndexes.includes(index))
   }
 
   for (const funcName in newCrontabsMap) {
@@ -275,12 +275,9 @@ function convertStepFunctionCrontabs(plugin = this) {
 
   // remove the original schedule events
   for (const stateMachine in newCrontabsMap) {
-    newCrontabsMap[stateMachine].removeIndexes.forEach((eventIndex) => {
-      plugin.serverless.service.stepFunctions.stateMachines[stateMachine].events.splice(
-        eventIndex,
-        1
-      );
-    });
+    const newEvents = plugin.serverless.service.stepFunctions.stateMachines[stateMachine].events
+      .filter((event, index) => !newCrontabsMap[stateMachine].removeIndexes.includes(index))
+      plugin.serverless.service.stepFunctions.stateMachines[stateMachine].events = newEvents
   }
 
   for (const stateMachine in newCrontabsMap) {
