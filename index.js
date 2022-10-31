@@ -288,6 +288,7 @@ function convertStepFunctionCrontabs(plugin = this) {
       ...newCrontabsMap[stateMachine].newCrontabs
     );
   }
+  plugin.log.info("Finished changing crons for Step Functions")
 }
 
 class ServerlessLocalCrontabs {
